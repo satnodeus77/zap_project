@@ -1,22 +1,24 @@
 env:
   contexts:
-    - name: "opensidscan"
+    - name: OpenSID
       urls:
-        - "https://masi.devrun.cloud"
-      includePaths:
-        - "https://masi.devrun.cloud.*"
+        - https://masi.devrun.cloud
+
 jobs:
-  - type: passiveScan-config
-    parameters:
-      maxAlertsPerRule: 100
   - type: spider
     parameters:
-      context: "opensidscan"
-      maxDuration: 2
+      context: OpenSID
+      maxDuration: 10
+
   - type: passiveScan-wait
+
+  - type: activeScan
+    parameters:
+      policy: Default Policy
+      maxDuration: 15
+
   - type: report
     parameters:
       template: traditional-html
+      reportFile: opensid-timed-report-20250410-142610.html
       reportDir: /zap/wrk/reports
-      reportTitle: "OpenSID ZAP Report"
-      reportFile: "opensid-zap-report.html"
