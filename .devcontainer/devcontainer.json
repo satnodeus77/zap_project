@@ -1,0 +1,12 @@
+{
+  "name": "ZAP Codespace",
+  "image": "owasp/zap2docker-stable",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postCreateCommand": "apt-get update && apt-get install -y curl"
+}
